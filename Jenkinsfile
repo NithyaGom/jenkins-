@@ -1,3 +1,21 @@
+def sendNotifications(String buildStatus = 'STARTED') {
+  // build status of null means successful
+  buildStatus =  buildStatus ?: 'SUCCESSFUL
+  def subject = "summary"
+  def details = "summary of jenkins" 
+ if (buildStatus == 'STARTED') {
+  echo "started"
+  }
+  else if (buildStatus == 'SUCCESSFUL') {
+  echo "successful"
+}
+emailext (
+      to: 'nithyasathish2331@gmail.com',
+      subject: subject,
+      body: details
+  )
+}
+
 pipeline {
   agent any
   stages {
