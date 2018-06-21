@@ -1,6 +1,6 @@
 def sendNotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL
+  buildStatus =  buildStatus ?: 'SUCCESSFUL'
   def subject = "summary"
   def details = "summary of jenkins" 
  if (buildStatus == 'STARTED') {
