@@ -1,63 +1,11 @@
-def sendNotifications(String buildStatus = 'STARTED') {
-  // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
-  def subject = "summary"
-  def details = "summary of jenkins" 
- if (buildStatus == 'STARTED') {
-  echo "started"
-  }
-  else if (buildStatus == 'SUCCESSFUL') {
-  echo "successful"
-}
-emailext (
-      to: 'nithyasathish2331@gmail.com',
-      subject: subject,
-      body: details
-  )
-}
-
 pipeline {
   agent any
   stages {
     stage ('Start') {
       steps {
         // send build started notifications
-        sendNotifications 'STARTED'
+        echo "${env.GIT_PREVIOUS_COMMIT}"
       }
-    }
-    stage ('Install') {
-      steps {
-        // install required bundles
-        sh 'bundle install'
-      }
-    }
-    stage ('Build') {
-      steps {
-        // build
-        sh 'bundle exec rake build'
-      }
-
-      post {
-        success {
-          // Archive the built artifacts
-          sh '"success"'
-        }
-      }
-    }
-    stage ('Test') {
-      steps {
-        // run tests with coverage
-        sh 'echo "test"'
-      }
-
-      
     }
   }
-  post {
-    always {
-      mail bcc: '', body: 'EMAIL from JENKINS because of build failure.', cc: '', from: 'nithyagomathi2307@gmail.com', replyTo: '', subject: 'ERROR', to: 'nithyasathish2331@gmail.com'
-      echo "MAIL send successful"
-
-    }
-}
 }
