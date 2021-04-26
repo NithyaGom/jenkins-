@@ -1,3 +1,5 @@
+Environment = "edhtest"
+dryRun = false
 pipeline {
   agent any
   stages{
