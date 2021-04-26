@@ -1,7 +1,8 @@
-@Library('re@master')
-environment = "edhtest"
-dryRun = false
 pipeline {
+  environment {
+    dryRun = true
+    environment = "edhdev"
+  }
   agent any
   stages{
       stage('test') {
