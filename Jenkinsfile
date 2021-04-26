@@ -1,4 +1,5 @@
-Environment = "edhtest"
+@Library('re@master')
+environment = "edhtest"
 dryRun = false
 pipeline {
   agent any
@@ -11,7 +12,7 @@ pipeline {
       stage('QA Script') {
           when{
               beforeAgent true
-              expression { return !dryRun && Environment=="edhqa" || Environment=="edhdev" }
+              expression { return !dryRun && environment=="edhqa" || environment=="edhdev" }
             }
             agent none
             steps {
